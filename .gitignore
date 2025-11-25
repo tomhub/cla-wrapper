@@ -7,3 +7,4 @@ data
 coverage
 test/__snapshots__
 *.log
+dist\ncoverage\n
