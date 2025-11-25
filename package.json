@@ -1,67 +1,60 @@
 {
     "name": "cla-wrapper",
-    "version": "0.3.9",
+    "version": "0.3.10",
     "description": "Wrapper for CDISC Library API",
-    "main": "dist/classes/claWrapper.js",
-    "types": "dist/classes/claWrapper.d.ts",
-    "scripts": {
-        "test": "yarn build && jest -c jest.config.js --coverage --verbose",
-        "build": "tsc",
-        "docs": "typedoc",
-        "publish": "yarn build && npm publish"
-    },
-    "repository": "https://github.com/defineEditor/cla-wrapper",
-    "author": "Dmitry Kolosov",
-    "contributors": [
-        {
-            "name": "Dmitry Kolosov",
-            "email": "dmitry.m.kolosov@gmail.com",
-            "url": ""
-        },
-        {
-            "name": "Sergei Krivtcov",
-            "email": "1000eyed@gmail.com",
-            "url": ""
-        }
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "ts-node-esm src/index.ts",
+    "lint": "eslint \"src/**/*.{ts,tsx}\" --max-warnings=0",
+    "format": "prettier --write \"**/*.{ts,js,json,md}\"",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "prepare": "husky install",
+    "release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tomhub/cla-wrapper.git"
+  },
+  "keywords": [
+    "cdisc",
+    "library",
+    "api",
+    "typescript"
+  ],
+  "author": "Tom",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.30.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.0",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.0",
+    "semantic-release": "^23.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.5.0",
+    "vitest": "^1.4.0",
+    "msw": "^1.2.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
     ],
-    "homepage": "https://defineeditor.github.io/cla-wrapper/index.html",
-    "keywords": [
-        "cdisc",
-        "library",
-        "api",
-        "wrapper"
-    ],
-    "license": "MIT",
-    "dependencies": {
-        "fast-xml-parser": "^4.1.2",
-        "json2csv": "^5.0.0",
-        "qs": "^6.9.4",
-        "request": "^2.88.2",
-        "types": "^0.1.1"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.12.10",
-        "@babel/preset-env": "^7.12.11",
-        "@babel/preset-typescript": "^7.12.7",
-        "@types/jest": "^26.0.19",
-        "@types/json2csv": "^5.0.1",
-        "@types/node": "*",
-        "@types/qs": "^6.9.5",
-        "@types/request": "^2.48.5",
-        "@typescript-eslint/eslint-plugin": "*",
-        "@typescript-eslint/parser": "*",
-        "babel-jest": "^26.6.3",
-        "docdash": "^1.1.1",
-        "eslint": "^7.12.0",
-        "eslint-config-standard": "^14.1.1",
-        "eslint-config-standard-with-typescript": "*",
-        "eslint-plugin-import": "^2.20.2",
-        "eslint-plugin-jest": "^24.1.0",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-promise": "^4.2.1",
-        "eslint-plugin-standard": "^4.0.1",
-        "jest": "^26.6.3",
-        "typedoc": "^0.21.0",
-        "typescript": "^4.0.0"
-    }
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
 }
