@@ -1156,11 +1156,11 @@ interface ProductParameters {
   coreObject?: CoreObject;
   model?: string;
   datasetType?:
-  | "dataStructures"
-  | "dataClasses"
-  | "domains"
-  | "datasets"
-  | "codelists";
+    | "dataStructures"
+    | "dataClasses"
+    | "domains"
+    | "datasets"
+    | "codelists";
   dependencies?: { [name: string]: ProductDependency };
   fullyLoaded?: boolean;
 }
