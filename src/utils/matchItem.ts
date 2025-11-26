@@ -1,4 +1,4 @@
-import type { ItemType } from "../classes/claWrapper.js";
+import type { ItemType } from "../classes/claWrapper.ts";
 /**
  * Match item (variable/field) against a standard item (variable/field)
  *

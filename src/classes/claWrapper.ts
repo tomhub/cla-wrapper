@@ -1,6 +1,6 @@
 import qs from "qs";
 import { XMLParser } from "fast-xml-parser";
-import { SearchResponse } from "../classes/searchResponse.js";
+import { SearchResponse } from "./searchResponse.js";
 import apiRequest from "../utils/apiRequest.js";
 import convertToFormat from "../utils/convertToFormat.js";
 import matchItem from "../utils/matchItem.js";
@@ -266,7 +266,8 @@ export class CdiscLibrary {
       });
       result = { statusCode: response.statusCode };
     } catch (error) {
-      response = { statusCode: -1, description: error.message };
+      const msg = error instanceof Error ? error.message : String(error);
+      response = { statusCode: -1, description: msg };
     }
     if (response.statusCode === 200) {
       let data;
@@ -1521,11 +1522,13 @@ export class Product extends BasicFunctions {
         return convertToFormat(Object.values(result), defaultedOptions.format);
       } else {
         let formatted: object[] = [];
-        Object.values(result).forEach((itemGroup: ItemGroupType) => {
-          formatted = formatted.concat(
-            itemGroup.getFormattedItems("json", true) as object[],
-          );
-        });
+        Object.values(result as ItemGroups).forEach(
+          (itemGroup: ItemGroupType) => {
+            formatted = formatted.concat(
+              itemGroup.getFormattedItems("json", true) as object[],
+            );
+          },
+        );
         return convertToFormat(formatted, defaultedOptions.format);
       }
     }
@@ -2250,9 +2253,9 @@ export class DataClass extends BasicFunctions {
     // Default options
     const defaultedOptions = { ...defaultMatchingOptions, ...options };
     let result: ItemType[] = [];
-    ["datasets", "domains"].forEach((dataType: "datasets" | "domains") => {
+    (["datasets", "domains"] as const).forEach((dataType) => {
       if (this[dataType]) {
-        Object.values(this[dataType]).some((itemGroup: ItemGroup) => {
+        (Object.values(this[dataType]) as ItemGroup[]).some((itemGroup) => {
           const matches = itemGroup.findMatchingItems(name, defaultedOptions);
           if (matches.length > 0) {
             result = result.concat(matches);

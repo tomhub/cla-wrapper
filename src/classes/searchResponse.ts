@@ -1,10 +1,10 @@
-import {
+import type {
   CdiscLibrary,
+  Domain,
+  Dataset,
   Variable,
   Field,
   DataStructure,
-  Domain,
-  Dataset,
 } from "./claWrapper.js";
 
 export class SearchResponse {
