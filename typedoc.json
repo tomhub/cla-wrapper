@@ -1,4 +1,4 @@
 {
-    "entryPoints": ["./src/classes/", "README.md", "LICENSE"],
-    "out": "docs"
+  "entryPoints": ["./src/classes/", "README.md", "LICENSE"],
+  "out": "docs"
 }
