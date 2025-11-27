@@ -7,11 +7,11 @@ export default defineConfig({
     environment: "node",
 
     // Run setup files before tests (e.g. polyfills, mocks)
-    setupFiles: ["./test/setup.ts"],
+    setupFiles: ["./test/polyfill.ts", "./test/setup.ts"],
 
     // Coverage configuration
     coverage: {
-      provider: "c8", // or 'v8' if you prefer native
+      provider: "v8", // or 'v8' if you prefer native
       reporter: ["text", "lcov", "html"], // add HTML for CI artifacts
       lines: 80,
       functions: 80,
@@ -21,7 +21,7 @@ export default defineConfig({
     },
 
     // Performance tweaks
-    include: ["src/**/*.test.{ts,tsx}"], // explicit test file glob
+    include: ["src/**/*.test.{ts,tsx}", "test/**/*.test.{ts,tsx}", ], // explicit test file glob
     watch: false, // disable watch mode in CI
   },
 });

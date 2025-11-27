@@ -1,3 +1,10 @@
+### Vitest Coverage Provider Update (Nov 2025)
+
+- Vitest v4 no longer supports "c8" coverage provider.
+- Updated vitest.config.ts to use provider "v8".
+- Added "html" reporter for CI artifacts.
+- Coverage thresholds remain enforced (80% lines/functions/statements, 70% branches).
+
 ### Node.js Support Policy (Nov 2025)
 
 - Runtime/library code supports Node.js ≥18.

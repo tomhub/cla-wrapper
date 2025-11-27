@@ -1,6 +1,6 @@
 const { CdiscLibrary } = require("../dist/classes/claWrapper");
 
-const cl = new CdiscLibrary({ baseUrl: cdiscLibraryUrl });
+const cl = new CdiscLibrary({ baseUrl: global.cdiscLibraryUrl });
 let product;
 let scenario;
 

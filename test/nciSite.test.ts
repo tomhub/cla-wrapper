@@ -1,9 +1,10 @@
 const { CdiscLibrary } = require("../dist/classes/claWrapper");
 
 const cl = new CdiscLibrary({
-  baseUrl: cdiscLibraryUrl,
+  baseUrl: global.cdiscLibraryUrl,
   useNciSiteForCt: true,
 });
+
 let product;
 let codeList;
 
